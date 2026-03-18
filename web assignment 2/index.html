@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Velour | Smart Inventory Management</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header class="navbar">
+        <div class="logo">Velour.</div>
+        <nav>
+            <ul class="nav-links">
+                <li><a href="#features">Features</a></li>
+                <li><a href="#pricing">Pricing</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+        <button class="cta-btn-small">Get Started</button>
+        <div class="hamburger" onclick="toggleMenu()">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Streamline Your Inventory Seamlessly</h1>
+            <p>Velour provides a real-time, intuitive platform to track, manage, and scale your product stock effortlessly across all your devices.</p>
+            <div class="hero-buttons">
+                <button class="cta-btn">Start Free Trial</button>
+                <button class="secondary-btn">View Demo</button>
+            </div>
+        </div>
+        <div class="hero-image">
+            <div class="mockup-placeholder">
+                <p>Dashboard Preview</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="features" class="features">
+        <h2>Why Choose Velour?</h2>
+        <div class="feature-grid">
+            <div class="feature-card">
+                <h3>Real-Time Sync</h3>
+                <p>Keep your stock levels accurate up to the second, preventing overselling and stockouts.</p>
+            </div>
+            <div class="feature-card">
+                <h3>Cross-Platform</h3>
+                <p>Access your dashboard seamlessly from your web browser or dedicated mobile app.</p>
+            </div>
+            <div class="feature-card">
+                <h3>Smart Analytics</h3>
+                <p>Generate actionable insights and predict future trends with our built-in reporting tools.</p>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 Velour Technologies. All rights reserved.</p>
+    </footer>
+
+    <script>
+        function toggleMenu() {
+            const navLinks = document.querySelector('.nav-links');
+            navLinks.classList.toggle('active');
+        }
+    </script>
+</body>
+</html>
