@@ -6,20 +6,14 @@
     <title>Velour | Smart Inventory Management</title>
     <link rel="stylesheet" href="style.css">
 
-    <!-- jQuery -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
-    <!-- Slick Carousel CSS -->
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css"/>
 
-    <!-- Slick Carousel JS -->
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
 
     <style>
-        /* ══════════════════════════════════
-           FIXED CARD SIZE — all same height
-        ══════════════════════════════════ */
         .feature-card {
             width: 100%;
             height: 380px;
@@ -39,7 +33,6 @@
             box-shadow: 0 12px 30px rgba(79, 70, 229, 0.18);
         }
 
-        /* Image — fixed height, always fills top portion */
         .feature-card .product-img {
             width: 100%;
             height: 200px;
@@ -48,7 +41,6 @@
             flex-shrink: 0;
         }
 
-        /* Text area — fills remaining space */
         .feature-card .card-body {
             padding: 16px 18px;
             flex: 1;
@@ -70,7 +62,6 @@
             line-height: 1.55;
         }
 
-        /* ── Carousel Controls ── */
         .carousel-controls {
             display: flex;
             align-items: center;
@@ -110,7 +101,6 @@
             text-align: center;
         }
 
-        /* ── Autoplay Status Badge ── */
         .autoplay-status {
             text-align: center;
             margin-top: 14px;
@@ -142,7 +132,6 @@
             50%       { opacity: 0.3; }
         }
 
-        /* ── Slick dots ── */
         .slick-dots li button:before {
             font-size: 10px;
             color: #4f46e5;
@@ -159,7 +148,6 @@
 </head>
 <body>
 
-    <!-- ══════════ NAVBAR ══════════ -->
     <header class="navbar">
         <div class="logo">
             <img src="velour.png" alt="Velour logo" class="logo-img">
@@ -179,7 +167,6 @@
         </div>
     </header>
 
-    <!-- ══════════ HERO ══════════ -->
     <section class="hero">
         <div class="hero-content">
             <h1>Streamline Your Inventory Seamlessly</h1>
@@ -194,14 +181,12 @@
         </div>
     </section>
 
-    <!-- ══════════ PRODUCTS / FEATURES CAROUSEL ══════════ -->
     <section id="products" class="features">
         <h2>Our Products</h2>
 
         <div class="carousel-container">
             <div class="feature-grid">
 
-                <!-- 1. Real-Time Sync — warehouse shelves -->
                 <div class="feature-card">
                     <img
                         src="https://images.unsplash.com/photo-1553413077-190dd305871c?w=600&h=400&fit=crop"
@@ -213,7 +198,6 @@
                     </div>
                 </div>
 
-                <!-- 2. Cross-Platform — phone in hand -->
                 <div class="feature-card">
                     <img
                         src="https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=600&h=400&fit=crop"
@@ -225,7 +209,6 @@
                     </div>
                 </div>
 
-                <!-- 3. Smart Analytics — charts on screen -->
                 <div class="feature-card">
                     <img
                         src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&h=400&fit=crop"
@@ -237,7 +220,6 @@
                     </div>
                 </div>
 
-                <!-- 4. Automated Alerts — notification on phone -->
                 <div class="feature-card">
                     <img
                         src="https://images.unsplash.com/photo-1611532736597-de2d4265fba3?w=600&h=400&fit=crop"
@@ -249,7 +231,6 @@
                     </div>
                 </div>
 
-                <!-- 5. Multi-User Support — team working together -->
                 <div class="feature-card">
                     <img
                         src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=600&h=400&fit=crop"
@@ -261,7 +242,6 @@
                     </div>
                 </div>
 
-                <!-- 6. Cloud Backup — server/cloud -->
                 <div class="feature-card">
                     <img
                         src="https://images.unsplash.com/photo-1544197150-b99a580bb7a8?w=600&h=400&fit=crop"
@@ -273,31 +253,28 @@
                     </div>
                 </div>
 
-            </div><!-- /.feature-grid -->
+            </div><
 
-            <!-- Custom Controls -->
             <div class="carousel-controls">
                 <button class="prev-btn">&#8592; Previous</button>
                 <div class="slide-counter">Showing <span id="currentSlide">1</span> of <span id="totalSlides">6</span></div>
                 <button class="next-btn">Next &#8594;</button>
             </div>
 
-            <!-- Autoplay Status -->
             <p class="autoplay-status" id="autoplayStatus">
                 <span class="dot"></span> Auto-playing every 5 seconds
             </p>
 
-        </div><!-- /.carousel-container -->
+        </div>
     </section>
 
-    <!-- ══════════ FOOTER ══════════ -->
+
     <footer>
         <p>&copy; 2026 Velour Technologies. All rights reserved.</p>
     </footer>
 
     <script src="script.js"></script>
 
-    <!-- ══════════ CAROUSEL SCRIPT ══════════ -->
     <script>
     $(document).ready(function () {
 
@@ -326,13 +303,11 @@
             ]
         });
 
-        // Slide counter update — currentSlide() gives the exact active slide (1-based)
         $('.feature-grid').on('afterChange', function (event, slick, currentIndex) {
             var realIndex = slick.currentSlide + 1;
             $('#currentSlide').text(realIndex);
         });
 
-        // Prev / Next buttons
         $('.prev-btn').on('click', function () {
             $('.feature-grid').slick('slickPrev');
         });
@@ -340,7 +315,6 @@
             $('.feature-grid').slick('slickNext');
         });
 
-        // Hover pause / resume
         var $status   = $('#autoplayStatus');
         var $carousel = $('.feature-grid');
 
