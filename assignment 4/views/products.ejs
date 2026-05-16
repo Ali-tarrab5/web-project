@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Velour Product Catalog</title>
+    <link rel="stylesheet" href="/style.css" />
+</head>
+<body>
+    <header class="navbar">
+        <div class="logo">
+            <img src="/velour.png" alt="Velour logo" class="logo-img" />
+        </div>
+        <nav>
+            <ul class="nav-links">
+                <li><a href="/products">Products</a></li>
+            </ul>
+        </nav>
+            <li><a href="/admin/products">Admin</a></li>
+    </header>
+
+    <main class="catalog-container">
+        <div class="catalog-header">
+            <div>
+                <h1>Product Catalog</h1>
+                <p class="product-summary">
+                    Showing <strong><%= products.length %></strong> of <strong><%= pagination.totalProducts %></strong> products
+                </p>
+            </div>
+            <a class="cta-btn-small" href="/products">Reset Filters</a>
+        </div>
+
+        <!-- Filter Form -->
+        <form class="product-filters" method="get" action="/products">
+            <input
+                type="search"
+                name="search"
+                value="<%= filters.search %>"
+                placeholder="Search products..."
+            />
+            <select name="category">
+                <option value="">All categories</option>
+                <% categories.forEach((item) => { %>
+                    <option value="<%= item %>" <%= filters.category === item ? 'selected' : '' %>><%= item %></option>
+                <% }) %>
+            </select>
+            <input
+                type="number"
+                name="minPrice"
+                min="0"
+                step="0.01"
+                value="<%= filters.minPrice %>"
+                placeholder="Min price"
+            />
+            <input
+                type="number"
+                name="maxPrice"
+                min="0"
+                step="0.01"
+                value="<%= filters.maxPrice %>"
+                placeholder="Max price"
+            />
+            <button type="submit">Filter</button>
+        </form>
+
+        <!-- Product Grid -->
+        <div class="cards-grid">
+            <% if (products.length === 0) { %>
+                <div style="grid-column: 1 / -1; text-align: center; color: #cbd5e1; padding: 3rem 0;">
+                    No products match the selected filters.
+                </div>
+            <% } %>
+
+            <% products.forEach((product) => { %>
+                <article class="product-card">
+                    <img class="product-img" src="<%= product.imageUrl %>" alt="<%= product.name %>" />
+                    <div class="product-info">
+                        <h3><%= product.name %></h3>
+                        <p class="badge"><%= product.category %></p>
+                        <div class="meta-row">
+                            <span class="rating">⭐ <%= product.rating.toFixed(1) %></span>
+                            <span class="stock <%= product.stock === 0 ? 'out' : '' %>">
+                                <%= product.stock > 0 ? product.stock + ' in stock' : 'Out of stock' %>
+                            </span>
+                        </div>
+                        <div class="price">$<%= product.price.toFixed(2) %></div>
+                    </div>
+                </article>
+            <% }) %>
+        </div>
+
+        <!-- Pagination -->
+        <nav class="pagination" aria-label="Pagination">
+            <% 
+            // Helper function to keep filters active while changing pages
+            function buildQuery(pageNumber) {
+                const params = new URLSearchParams();
+                if (filters.search) params.append('search', filters.search);
+                if (filters.category) params.append('category', filters.category);
+                if (filters.minPrice) params.append('minPrice', filters.minPrice);
+                if (filters.maxPrice) params.append('maxPrice', filters.maxPrice);
+                if (filters.sort) params.append('sort', filters.sort);
+                params.append('page', pageNumber);
+                return params.toString();
+            } 
+            %>
+
+            <% if (pagination.page > 1) { %>
+                <a href="/products?<%= buildQuery(pagination.page - 1) %>" class="page-btn">Previous</a>
+            <% } else { %>
+                <span class="disabled page-btn">Previous</span>
+            <% } %>
+
+            <% pageNumbers.forEach(num => { %>
+                <% if (num === pagination.page) { %>
+                    <span class="active page-num"><%= num %></span>
+                <% } else { %>
+                    <a href="/products?<%= buildQuery(num) %>" class="page-num"><%= num %></a>
+                <% } %>
+            <% }) %>
+
+            <% if (pagination.page < pagination.totalPages) { %>
+                <a href="/products?<%= buildQuery(pagination.page + 1) %>" class="page-btn">Next</a>
+            <% } else { %>
+                <span class="disabled page-btn">Next</span>
+            <% } %>
+        </nav>
+    </main>
+</body>
+</html>

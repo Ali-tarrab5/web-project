@@ -1,0 +1,29 @@
+<header class="navbar">
+    <div class="logo">
+        <img src="/velour.png" alt="Velour logo" class="logo-img" />
+    </div>
+    <nav>
+        <ul class="nav-links">
+            <li><a href="/products">Products</a></li>
+            <% if (currentUser?.role === 'admin') { %>
+                <li><a href="/admin/products">Admin</a></li>
+            <% } %>
+            <% if (currentUser) { %>
+                <li><a href="/checkout">Checkout</a></li>
+            <% } %>
+        </ul>
+        <ul class="nav-links nav-right">
+            <% if (currentUser) { %>
+                <li class="nav-welcome">Hi, <%= currentUser.name %></li>
+                <li>
+                    <form method="post" action="/logout" class="logout-form">
+                        <button type="submit" class="nav-logout">Logout</button>
+                    </form>
+                </li>
+            <% } else { %>
+                <li><a href="/login">Login</a></li>
+                <li><a href="/register">Register</a></li>
+            <% } %>
+        </ul>
+    </nav>
+</header>

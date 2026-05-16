@@ -1,0 +1,58 @@
+<%- include('admin_header', { title: title, active: active }) %>
+
+<%- include('partials/flash_messages') %>
+
+<section class="admin-summary">
+    <div class="admin-card">
+        <h3>Total products</h3>
+        <p><%= totalProducts %></p>
+    </div>
+    <div class="admin-card">
+        <h3>Categories</h3>
+        <p><%= totalCategories %></p>
+    </div>
+</section>
+
+<div class="admin-card" style="overflow-x:auto; padding: 0;">
+    <table class="admin-table">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Category</th>
+                <th>Price</th>
+                <th>Stock</th>
+                <th>Rating</th>
+                <th>Image</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% if (products.length === 0) { %>
+                <tr>
+                    <td colspan="7" style="text-align:center; padding: 2rem; color: var(--text-muted);">No products found.</td>
+                </tr>
+            <% } %>
+
+            <% products.forEach((product) => { %>
+                <tr>
+                    <td><%= product.name %></td>
+                    <td><%= product.category %></td>
+                    <td>$<%= product.price.toFixed(2) %></td>
+                    <td><%= product.stock %></td>
+                    <td><%= product.rating.toFixed(1) %></td>
+                    <td>
+                        <img src="<%= product.imageUrl || 'https://via.placeholder.com/80x60?text=No+Image' %>" alt="<%= product.name %>" style="width:80px; height:60px; object-fit:cover; border-radius:10px;" />
+                    </td>
+                    <td class="admin-actions">
+                        <a href="/admin/products/<%= product._id %>/edit">Edit</a>
+                        <form method="post" action="/admin/products/<%= product._id %>/delete" style="display:inline; margin:0;">
+                            <button type="button" onclick="confirmDelete(this.form)">Delete</button>
+                        </form>
+                    </td>
+                </tr>
+            <% }) %>
+        </tbody>
+    </table>
+</div>
+
+<%- include('admin_footer') %>

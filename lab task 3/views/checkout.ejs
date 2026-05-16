@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Checkout | Velour</title>
+    <link rel="stylesheet" href="/style.css" />
+</head>
+<body>
+    <%- include('partials/navbar') %>
+
+    <main class="centered-form">
+        <div class="form-panel">
+            <h1>Checkout</h1>
+            <%- include('partials/flash_messages') %>
+            <p>Hi <strong><%= currentUser.name %></strong>, you are logged in and can access checkout.</p>
+            <p>Email: <%= currentUser.email %></p>
+            <p>Role: <%= currentUser.role %></p>
+            <div class="checkout-box">
+                <p>Your checkout page is working correctly. Use the links below to continue shopping or place an order.</p>
+                <a class="cta-btn-small" href="/products">Back to Products</a>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

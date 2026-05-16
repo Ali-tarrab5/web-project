@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Register | Velour</title>
+    <link rel="stylesheet" href="/style.css" />
+</head>
+<body>
+    <%- include('partials/navbar') %>
+
+    <main class="centered-form">
+        <div class="form-panel">
+            <h1>Create Account</h1>
+            <%- include('partials/flash_messages') %>
+            <form method="post" action="/register" class="auth-form">
+                <label for="name">Name</label>
+                <input id="name" name="name" type="text" placeholder="Your name" value="<%= formData.name || '' %>" required />
+
+                <label for="email">Email</label>
+                <input id="email" name="email" type="email" placeholder="you@example.com" value="<%= formData.email || '' %>" required />
+
+                <label for="password">Password</label>
+                <input id="password" name="password" type="password" placeholder="••••••••" required />
+
+                <label for="confirmPassword">Confirm Password</label>
+                <input id="confirmPassword" name="confirmPassword" type="password" placeholder="••••••••" required />
+
+                <button type="submit" class="cta-btn-small">Register</button>
+            </form>
+            <p class="auth-redirect">Already have an account? <a href="/login">Login</a></p>
+        </div>
+    </main>
+</body>
+</html>

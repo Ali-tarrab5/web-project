@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><%= title %> | Admin Panel</title>
+    <link rel="stylesheet" href="/style.css" />
+</head>
+<body>
+    <header class="navbar">
+        <div class="logo">
+            <img src="/velour.png" alt="Velour logo" class="logo-img" />
+        </div>
+        <nav>
+            <ul class="nav-links">
+                <li><a href="/products">Store</a></li>
+                <li><a href="/admin/products">Admin</a></li>
+            </ul>
+            <ul class="nav-links nav-right">
+                <% if (currentUser) { %>
+                    <li class="nav-welcome">Hi, <%= currentUser.name %></li>
+                    <li>
+                        <form method="post" action="/logout" class="logout-form">
+                            <button type="submit" class="nav-logout">Logout</button>
+                        </form>
+                    </li>
+                <% } else { %>
+                    <li><a href="/login">Login</a></li>
+                    <li><a href="/register">Register</a></li>
+                <% } %>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="admin-layout">
+        <aside class="admin-sidebar">
+            <h2>Administrator</h2>
+            <nav>
+                <a href="/admin/products" class="<%= active === 'dashboard' ? 'active-link' : '' %>">Dashboard</a>
+                <a href="/admin/products/new" class="<%= active === 'create' ? 'active-link' : '' %>">Add Product</a>
+            </nav>
+        </aside>
+
+        <main class="admin-main">
+            <div class="admin-header">
+                <h1><%= title %></h1>
+                <% if (title === 'Admin Dashboard') { %>
+                    <a class="cta-btn-small" href="/admin/products/new">Add Product</a>
+                <% } %>
+            </div>
+
+            <% if (typeof message !== 'undefined' && message) { %>
+                <div class="admin-notice"><%= message %></div>
+            <% } %>
